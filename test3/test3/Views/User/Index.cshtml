@@ -1,0 +1,72 @@
+﻿@model IEnumerable<test3.Models.Book>
+
+@{
+    var s = Session["out"];
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Style2/StyleSheet1.css" rel="stylesheet" type="text/css" />
+
+<h2>Welcome</h2>
+<br />
+<br />
+@Html.ActionLink("My Books", "ViewBooks", new { userID= Convert.ToInt32(Session["User"]) }, new { @class = "btn btn-primary"})
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+      
+        <div class="col-sm-4">
+
+            <div class="card" style="width:300px">
+                <img class="card-img-top" style="width:100%" src="@Url.Content(item.book_img)" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align:center">Title: @Html.DisplayFor(modelItem => item.book_title)</h4>
+                    <p class="card-text" style="text-align:center">Author: @Html.DisplayFor(modelItem => item.book_author)</p>
+                    <p class="card-text" style="text-align:center">Number Of Copies: @Html.DisplayFor(modelItem => item.copies)</p>
+                    <div id="pls" class="alert" style="display:none">
+                        Out of stock.
+                    </div>
+                    
+                        @Html.ActionLink("Rent", "Rent", new { book_id = item.book_id }, new { @class = "btn btn-primary", @id = "rent_btn" })
+                <p class="card-text" style="text-align:center">@Html.DisplayFor(modelItem => item.status)</p>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <!--
+        <div class="modal fade" id="mymodel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                            <h3 class="modal-title">Confirmation</h3>
+                            <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    </div>
+
+                    <div class="modal-body">
+                            <h3 style="margin-left:90px">Are you sure you want to rent this ?</h3>
+                    </div>
+
+                    <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+
+    }
+   
+
+    <!-- Modal template -->
+    
+
+</div>

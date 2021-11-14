@@ -1,0 +1,80 @@
+﻿@model IEnumerable<test3.Models.Book>
+@using test3.Models;
+@{
+    
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Style2/StyleSheet1.css" rel="stylesheet" type="text/css"/>
+
+
+<h3>Welcome</h3>
+
+@Html.ActionLink("Add New Book", "Add_book",null, new { @class = "btn btn-default" })
+@Html.ActionLink("Add New User", "Add_user", null, new { @class = "btn btn-default" })
+<br />
+<br />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-4">
+            <div class="card" style="width:300px">
+                <img class="card-img-top" style="width:100%" src="@Url.Content(item.book_img)" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align:center">Title: @Html.DisplayFor(modelItem => item.book_title)</h4>
+                    <p class="card-text" style="text-align:center">Author: @Html.DisplayFor(modelItem => item.book_author)</p>
+                    <p class="card-text" style="text-align:center">Copies: @Html.DisplayFor(modelItem => item.copies)</p>
+
+                    <!--
+                        <a href="#" id="rent_btn" class="btn btn-primary" data-toggle="modal" data-target="#mymodel">Delete</a>
+                    -->
+
+                    @Html.ActionLink("Delete One", "Delete", new { id = item.book_id, num = 1 }, new { @class = "btn btn-danger", @style = "margin-left:15% ; margin-bottom:15px" })
+                    @Html.ActionLink("Delete All", "DeleteAll", new { id = item.book_id }, new { @class = "btn btn-danger", @style = "margin-left:5% ;margin-bottom:15px" })
+
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div>
+            <div class="modal fade" id="mymodel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h3 class="modal-title">Test</h3>
+                            <a href="#" class="close" data-dismiss="modal">&times;</a>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <h3 style="margin-left:120px">Are you sure you want to Rent</h3>
+                            <input type="number" id="t1" />
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    }
+
+
+
+</div>
+
+
+
+

@@ -1,0 +1,48 @@
+﻿@model test3.Models.RentViewModel
+@using test3.Models
+@{
+    Book b = new Book();
+    ViewBag.Title = "ViewBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBooks</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => b.book_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => b.book_img)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => b.date_added)
+        </th>
+       
+        
+    </tr>
+
+@foreach (var item in Model.MyBooks.Zip(Model.rentThat,(a,c)=>new {A=a,B=c })) {
+    
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.A.book_title)
+        </td>
+        <td>
+            <img src="@Url.Content(item.A.book_img)" style="width:50px;height:50px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.B.trans_date)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Back to BookStore", "BackTo", new { id1 = item.A.book_id , id2 = item.B.trans_id,id3=item.B.user_id },new {@class="btn btn-default" })
+        </td>
+    </tr>
+}
+
+</table>

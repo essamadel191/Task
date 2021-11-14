@@ -1,0 +1,35 @@
+﻿@model test3.Models.Book
+
+@{
+    ViewBag.Title = "outof";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Style2/StyleSheet1.css" rel="stylesheet" type="text/css" />
+
+
+<h2>Details</h2>
+
+
+<div class="col-lg-5">
+
+    <div class="card" style="width:300px">
+        <img class="card-img-top" style="width:100%" src="@Url.Content(Model.book_img)" alt="Card image">
+        <div class="card-body">
+            <h4 class="card-title" style="text-align:center">@Html.DisplayFor(modelItem => Model.book_title)</h4>
+            <p class="card-text" style="text-align:center">@Html.DisplayFor(modelItem => Model.book_author)</p>
+            
+            <div id="pls" class="alert" style="display:none">
+                Out of stock.
+            </div>
+
+
+            <p class="card-text" style="text-align:center">@Html.DisplayFor(modelItem => Model.status)</p>
+        </div>
+    </div>
+
+</div>
